@@ -1,6 +1,6 @@
 # Task 1
 
-Work your way through the entire card/deck example of **inheritance** that is given in [Chapter 18](http://www.greenteapress.com/thinkpython2/html/thinkpython2019.html) of our book. By the time you finish, you should have created a file containing three classes (`Deck()` and `Card()` and 'Hand()').  Be sure to include all the attributes/methods covered in the example.  Also be sure to include the `Deck.sort()` method that is requested.  You can use a `main` function to demonstrate (and show yourself) how these classes work independently and together.
+Work your way through the entire card/deck example of **inheritance** that is given in [Chapter 18](http://www.greenteapress.com/thinkpython2/html/thinkpython2019.html) of our book. By the time you finish, you should have created a file containing three classes (`Deck()` and `Card()` and `Hand()`).  Be sure to include all the attributes/methods covered in the example.  Also be sure to include the `Deck.sort()` method that is requested.  You can use a `main` function to demonstrate (and show yourself) how these classes work independently and together.
 
 
 # Task 2
