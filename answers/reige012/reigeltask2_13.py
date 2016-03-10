@@ -31,9 +31,9 @@ class WordCount():
     """a class to do word counts on text"""
     def __init__(self):
         """defines the instance attributes of the WordCount() class"""
-        args = self.parser_filepath()
+        self.filepath = self.parser_filepath()
         # runs the parser_filepath to make user give filepath on command line
-        self.filename = os.path.basename(args.filepath)
+        self.filename = os.path.basename(self.filepath.filepath)
         # uses filepath given to find the file name and set to self.filename
         self.total_words()
         # runs the total words function to count total # of words in text
@@ -54,7 +54,7 @@ class WordCount():
 
     def __str__(self):
         """returns the WordCount in a nice format for printing"""
-        return "Filepath={}\nFileName={}\nTotal Words={}\nTotal Punctuation:{}".format(self.parser_filepath(), self.filename, self.total_words(), self.total_punc_count())
+        return "Filepath={}\nFileName={}\nTotal Words={}\nTotal Punctuation:{}".format(self.filepath, self.filename, self.total_words(), self.total_punc_count())
 
     def total_words(self):
         """counts the total words in the given file"""
