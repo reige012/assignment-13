@@ -34,6 +34,7 @@ class Counting:
         self.filepath = os.path.abspath(self.inputfile)
         self.word_totalcount()
         self.punct_totalcount()
+        self.punct_type()
 
     def printing(self):
         x = self.filepath
@@ -52,6 +53,23 @@ class Counting:
             count = lambda l1, l2: len(list(filter(lambda c: c in l2, l1)))
             counters = count(funner, string.punctuation)
             print(counters)
+
+
+    def punct_type(self):
+        with open(self.inputfile, "r") as myfile:
+            myfiles = myfile.read()
+            list2 = string.punctuation
+            my_dict = {}
+            for punct in list2:
+                a = myfiles.count(punct)
+                if a > 0:
+                    my_dict[punct] = a
+                    myfile.close()
+            print("\nTypes of punctuation in file:")
+            for punct in my_dict:
+                print(punct)
+
+
 
     def word_count(self):
         with open(self.inputfile, "r") as string:
