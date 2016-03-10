@@ -1,0 +1,32 @@
+Biotechnology Progress
+
+Immobilized Yeast Bioreactor Systems for Continuous Beer Fermentation
+
+Authors: Murthy Tata, Patricia Bower, Susan Bromberg, Dick Duncombe,
+Jeff Fehring, Vera Lau, David Ryder, Paul Stassi
+
+First published: 1999
+DOI: 10.1021/bp980109z
+
+Abstract
+Two different types of immobilized yeast bioreactors were examined for
+continuous fermentation of high-gravity worts. One of these is a fluidized bed
+reactor (FBR) that employs porous glass beads for yeast immobilization. The
+second system is a loop reactor containing a porous silicon carbide cartridge
+(SCCR) for immobilizing the yeast cells. Although there was some residual
+fermentable sugar in the SCCR system product, nearly complete attenuation of
+the wort sugars was achieved in either of the systems when operated as a
+two-stage process. Fermentation could be completed in these systems in only
+half the time required for a conventional batch process. Both the systems
+showed similar kinetics of extract consumption, and therefore similar
+volumetric productivity. As compared to the batch fermentation, total fusel
+alcohols were lower; total esters, while variable, were generally higher. The
+yeast biomass production was similar to that in a conventional fermentation
+process. As would be expected in an accelerated fermentation system, the levels
+of vicinal diketones (VDKs) were higher. To remove the VDKs, the young beer was
+heat-treated to convert the VDK precursors and processed through a packed bed
+immobilized yeast bioreactor for VDK assimilation. The finished product from
+the FBR system was found to be quite acceptable from a flavor perspective,
+albeit different from the product from a conventional batch process.
+Significantly shortened fermentation times demonstrate the feasibility of this
+technology for beer production.
