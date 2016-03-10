@@ -64,7 +64,7 @@ class Counting:
     def punct_count(self):
         with open(self.inputfile, "r") as string:
             string = string.read()
-            my_dict = string.replace(" ", "").replace("  ", "").replace("\n", "").strip()
+            my_dict = string.replace(" ", "").replace("  ", "").replace("\r\n", "").strip()
             list = re.split('\w+', my_dict)
             numbers = Counter(list).most_common(10)
         return numbers
@@ -73,9 +73,9 @@ def main():
     userinput = askingforfiles()
     vols = Counting(userinput.input)
     vol = vols.printing()
-    print("Path to file: r\n", vol)
+    print("Path to file: \r\n", vol)
     counts = vols.word_count()
-    print("Count of input file: r\n")
+    print("Count of input file: \r\n")
     for item in counts:
         print("{} {}".format(item[1], item[0]))
     punct = vols.punct_count()
