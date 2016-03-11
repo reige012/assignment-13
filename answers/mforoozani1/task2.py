@@ -7,23 +7,26 @@ count the most 20 common words use collection module, and argparser
 from collections import Counter
 import argparse
 from string import punctuation
-import os
+# import os
 
 
 class Wordcounting:
 
-    def __init__(self, filename, filetext):
-        self.filename = os.path.basename(filename)
-        self.filepath = os.path.abspath(filename)
-        self.filetext = filetext
+    def __init__(self, filename):
+        self.filename = filename
+        self.read()
 
-    def count_word(self, filetext):
+    def read(self):
+        with open(self.filename, 'r') as infile:
+            self.contents = infile.read()
+
+    def count_word(self):
         """
         remove, and change all characters to lower case, count the frequency
         words
         """
 
-        text1 = self.filetext.replace(",", " ").replace(".", " ")
+        text1 = self.contents.replace(",", " ").replace(".", " ")
         text2 = text1.replace("?", " ").replace("/", " ").replace("!", " ")
         text3 = text2.replace(":", " ").replace(";", " ").casefold()
         text4 = text3.replace(")", " ").replace(" (", " ")
@@ -36,9 +39,9 @@ class Wordcounting:
             print(A)
 
     def count_punctuation(self):
-        c = Counter(c for line in self.filetext for c in line if c in
+        c = Counter(c for line in self.contents for c in line if c in
                     punctuation)
-        d = c.most_commom(10)
+        d = c.most_common(10)
         print(d)
 
 
@@ -54,11 +57,9 @@ def get_parser():
 
 def main():
     args = get_parser()
-    with open(args.inputfile, "r") as filetext:
-        filetext_string = filetext.read()
-    filetext = open(args.inputfile, "r")
-    word_counting = Wordcounting(filetext_string, filetext)
-    word_counting.count_word(filetext)
+    word_counting = Wordcounting(args.inputfile)
+    word_counting.count_word()
+    word_counting.count_punctuation()
 
 
 if __name__ == '__main__':
