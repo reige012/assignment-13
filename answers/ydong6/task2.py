@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 '''
 Created on Mar 10, 2016
-[ ] Program is correctly formatted (0.5 pt)
+-[ ] Program is correctly formatted (0.5 pt)
 - [ ] Program includes `main()` function and "ifmain" statement (0.5 pt)
 - [ ] Program uses `argparse` to get the input filename (1.0 pt)
 - [ ] Program uses a class-based approach and includes the requested attributes and methods (4.0 pt)
@@ -10,120 +10,86 @@ Created on Mar 10, 2016
 @author: York
 '''
 
+
 import argparse
-import collections
 import os
-import re
+import string
 from collections import Counter
 
 
-def parser_file_input():
-    """Function takes a file as input and ask for a name for output file"""
-    parser = argparse.ArgumentParser(
-            description="""Input a file to use and an output file name"""
-            )
-    parser.add_argument(
-                '--input',
-                required=True,
-                type=str,
-                help='Enter the name of the file containing text.'
-            )
-    #parser.add_argument('--output',required=True,type=str,help='Write into new file.')
-    return parser.parse_args()
+def path_file(filepath):
+    filepath.add_argument("--input",required=True,type=str,help='Enter the file name')
+    filepath.add_argument("--path",required=True,type=str,help='Enter the path of the file')
+    
 
-
-def cleanup(quote):
-    cleaned_quote_0 = quote.lower()
-    cleaned_quote_1 = cleaned_quote_0.replace(".", "").replace(",", "").replace(";","").replace("'","").replace(")","").replace("(","").replace(":","").replace("!","")
-    cleaned_quote_2 = cleaned_quote_1.replace("\n\n", " ")
-    return cleaned_quote_2
-
-class Filecounts: 
-    def __init__(self, input):
-        self.infile = input
-        self.filepath = os.path.abspath(self.input)
-        self.filename = os.path.basename(self.input)
-        with open(input, 'r') as nu:
-            self.nu = nu.read()
-   
-    def path_name(self):
-        path = self.filepath
-        name = self.filename
-        return path, name
-
-    def __str__(self):
-        return self.args
+class FileCount():
+    def __init__(self, file):
+        self.file = input
+        self.file_path = os.path.abspath(file)
+        counts = self.gather(file)
+        self.punct_counts = counts[1]
+        self.word_counts = counts[0]
+        self.punctuation = list(self.punct_counts.keys())
+        self.word_count = len(self.word_counts.keys())
+        
+        
+    def Clean(self, subst):
+        subst1 = ''
+        subst = subst.replace("\r\n", " ").lower()
+        listofpunc = []
+        for letter in subst:
+            if letter in string.punctuation:
+                listofpunc.append(letter)
+            if letter.isalpha() or letter == ' ':
+                subst1 += letter
+        wordscollect = subst1.split(' ')
+        return wordscollect, listofpunc
     
     
-    def punctuations(self):
-        puncs = re.findall('[^\s\w]', self.args)
-        countedpuncs = Counter(puncs).most_common(10)
-        print("\n The punctuation is \n")
-        return countedpuncs
+    def index(self, list, pointer):
+        for item in list:
+            pointer[item] += 1
+        return pointer
+    
+    def gather(self, file):
+        word_counter = Counter()
+        punct_counter = Counter()
+        with open(file, 'r') as file1:
+            for line in file1:
+                x = self.Clean(line)
+                words = x[0]
+                puncts = x[1]
+                word_counter = self.index(words, word_counter)
+                punct_counter = self.index(puncts, punct_counter)
+            file1.close()
+        return word_counter, punct_counter
+
+ 
+    def __str__(self,):
+        return '{}:\n{} words\n{} punctuation marks'.format(self.file_path,self.word_count,len(self.punctuation))
 
 
-def makelist(parsed_quote):
-    parsed = parsed_quote.split(" ")
-    return parsed
+    def function1(self, pointer, rank):
+        width = len(max(pointer, key=len))
+        rank_counts = pointer.most_common(20)
+        n = 0
+        for index in rank_counts:
+            if n < rank:
+                print('{0:{3}{width}}{2}{1:{3}}'.format(index[0], index[1],'\t', '<', width=width))
+            n += 1
+        return n
 
-
-def make_dict(quote_as_list):
-    word_count = []
-    for word in quote_as_list:
-        total = 0
-        for item in quote_as_list:
-            if word == item:
-                total += 1
-        word_count.append(total)
-    zip_dict = dict(zip(quote_as_list, word_count))
-    return zip_dict
-
-
-def count_lines(zip_dict):
-    index=0
-    for line in zip_dict:
-        line=+1
-        index+=1
-    print("total number of words in file", index)
-    return index
-
-
-def file_name(new_filename):
-    filename=os.path.join("/some/other/path", new_filename)
-    print(filename)
-
-
-def top_twenty_words(the_dict):
-    #top_ten = heapq.nlargest(10, the_dict, key=the_dict.get)
-    top_twenty_sorted = sorted(the_dict.items(), key=lambda x: (-x[1], x[0]))[:20]
-    return top_twenty_sorted
 
 
 def main():
-    args = parser_file_input()
-    with open(args.input, 'r') as thats_the_file:
-        quote=thats_the_file.read()
-        #print(quote)
-    cleaned_quote = cleanup(quote)
-    #print(cleaned_quote)
-    quote_as_list = makelist(cleaned_quote)
-    #print(quote_as_list)
-    word_count_dict = make_dict(quote_as_list)
-    
-    print(word_count_dict)
-    top_twenty = top_twenty_words(word_count_dict)
-    print("\n\nThe twenty most common words in the dictionary and their word counts:\n")
-    for item in top_twenty:
-        print('%s\t\t%s'%(item[0],item[1]))
-    zip_dict=make_dict(quote_as_list)
-    count_lines(zip_dict)
-    new_filename=("File name")
-    file_name(new_filename)
-        #print(item[0] + "\t" + str(item[1]))
-    print("\n\n")
-    #o=args.output
-    #counted= write_file(word_count_dict,o)
-    #print(counted)
-    
+    file_name_parser = argparse.ArgumentParser()
+    path_file(file_name_parser)
+    file_name_args = file_name_parser.parse_args()
+    counts = FileCount(file_name_args.input)
+    print('Twenty most common words:')
+    counts.function1(counts.word_counts, 20)
+    print('Ten most common punctuation marks:')
+    counts.function1(counts.punct_counts, 10)
+
 if __name__ == '__main__':
     main()
