@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-BIOL7800 assignment 11
+BIOL7800 assignment 13
 Oscar Johnson 4 March 2016
 """
 
@@ -24,20 +24,27 @@ def get_args():
 
 class File():
     """
-    maniuplation of text files; word count, file name, path, etc.
-    """    
+    manipulation of text files; word count, file name, path, etc.
+    """
     def __init__(self, my_file):
         self.my_file = my_file
+        self.filename()
+        self.path()
+        self.word_count()
+        self.punctuation()
 
     def filename(self):
         """get file name"""
         path = os.path.abspath(self.my_file)
         self.filename = os.path.basename(path) 
+        print("file name is: ", self.filename, "\n")
         return self.filename
     
     def path(self):
         """get absolute path"""
-        self.path = os.path.abspath(self.my_file)
+        full_path = os.path.abspath(self.my_file)
+        self.path = full_path.split()[0]
+        print("full path is: ", self.path, "\n")
         return self.path
 
     def word_count(self):
@@ -60,6 +67,7 @@ class File():
             # add words and values to list in form of tuples
             count_of_words.append((value, key))
         count_of_words.sort(reverse=True) #sort words in descending abundance
+        print("\ntop twenty words and counts: ")
         for value, key in count_of_words[0:20]:
             x = "{:<15}{:^15}".format(key, value)
             print(x)
@@ -84,6 +92,7 @@ class File():
             # add words and values to list in form of tuples
             count_of_punct.append((value, key))
         count_of_punct.sort(reverse=True) #sort words in descending abundance
+        print("\ntop ten punctuation and counts: ")        
         for value, key in count_of_punct[0:10]:
             x = "{:<15}{:^15}".format(key, value)
             print(x)
