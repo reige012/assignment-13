@@ -5,6 +5,7 @@
 My 2nd program for Assignment 13
 
 Created by Michael Henson on 09 March 2016.
+With the gracious help of AJ "Da Boss Man" Turner
 Copyright 2016 Michael W Henson. All rights reserved.
 """
 import argparse
@@ -12,6 +13,7 @@ import os
 import re
 from collections import Counter
 import string
+
 
 def askingforfiles():
     parser = argparse.ArgumentParser(
@@ -32,6 +34,7 @@ class Counting:
         self.filepath = os.path.abspath(self.inputfile)
         self.word_totalcount()
         self.punct_totalcount()
+        self.punct_type()
 
     def printing(self):
         x = self.filepath
@@ -50,6 +53,23 @@ class Counting:
             count = lambda l1, l2: len(list(filter(lambda c: c in l2, l1)))
             counters = count(funner, string.punctuation)
             print(counters)
+
+
+    def punct_type(self):
+        with open(self.inputfile, "r") as myfile:
+            myfiles = myfile.read()
+            list2 = string.punctuation
+            my_dict = {}
+            for punct in list2:
+                a = myfiles.count(punct)
+                if a > 0:
+                    my_dict[punct] = a
+                    myfile.close()
+            print("\nTypes of punctuation in file:")
+            for punct in my_dict:
+                print(punct)
+
+
 
     def word_count(self):
         with open(self.inputfile, "r") as string:
@@ -70,22 +90,17 @@ class Counting:
         return numbers
 
     def punct_count(self):
-        with open(self.inputfile, "r") as string:
-            string = string.read()
-            my_dict = string.replace(" ", "").replace("  ", "").replace("\n", "").strip()
-            list = re.split('\w+', my_dict)
-            #https://docs.python.org/2/library/re.html
-            '''
-            this took me forever to figure out and what to use
-            since I previous got this wrong. this seems simple compared
-            to previous attempted to break apart using string
-            '''
-            '''
-            http://stackoverflow.com/questions/10134372/get-a-list-of-names-which-start-with-certain-letters
-            First answer helped tell me how to put together a list comprehension.
-            '''
-            numbers = Counter(list).most_common(10)
-        return numbers
+        with open(self.inputfile, "r") as myfile:
+            myfiles = myfile.read()
+            list2 = string.punctuation
+            my_dict = {}
+            for punct in list2:
+                a = myfiles.count(punct)
+                if a > 0:
+                    my_dict[punct] = a
+                    myfile.close()
+        return sorted(my_dict.items(), key=lambda item: -item[1])[0:10]
+
 
 def main():
     userinput = askingforfiles()
@@ -100,9 +115,6 @@ def main():
     print("\nWhat is the total count of my input file \n")
     for item in punct:
         print("{} {}".format(item[1], item[0]))
-
-
-
 
 
 if __name__ == '__main__':
