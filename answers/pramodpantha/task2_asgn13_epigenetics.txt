@@ -1,0 +1,65 @@
+Epigenetics is the study of heritable changes in gene expression or cellular pheno-
+type caused by mechanisms other than changing the underlying DNA sequence. Two
+epigenetic phenomena, genomic imprinting and AEI, are discussed in this dissertation.
+Genomic imprinting is an epigenetically regulated process by which imprinted genes
+are expressed in a parent-of-origin-specic manner, and AEI refers to asymmetric
+expression of two dierent alleles at the same locus.
+Many analysis tools had been used to investigate these two phenomena. Among
+these tools, RNA-seq is a powerful new technology for mapping and quantifying tran-
+scriptomes using ultra high throughput next generation sequencing technologies. Us-
+ing RNA-seq, a genome-wide study can investigate genome-wide genomic imprinting
+and AEI without prior knowledge of genes or coding regions. Compared to microarray
+hybridization-based methods, RNA-seq does not have background noise due to hy-
+bridization. Data from RNA-seq experiments are digital, so they do not have limited
+range of signals. Compared to the traditional sequence-based methods, RNA-seq is
+more economical which makes genome-wide mapping feasible. Nevertheless, RNA-seq
+has its own limitations, such as errors in base calling, reading mapping uncertainty
+in genome, and biases from transcript length and sequence base composition.
+In this dissertation, we focus on how investigating sequencing parameters may
+aect power of tests for detecting imprinting and/or AEI, and whether the current
+ii
+technology can provide sucient power for such an endeavor for mouse and human
+data. Since existing methods in the literatures are not amenable for detecting such
+eects and since these two eects may be confounded with one another, we also pro-
+pose a joint test for simultaneous detection of imprinting and AEI. For mouse data,
+the reciprocal cross design for mouse, and two denitions of informative reads based
+on binomial distribution are used throughout this dissertation. The proposed joint
+test and the two-chi-squares test in the literature are used for power calculation and
+simulation study, and their results are compared and contrasted. The results show
+that the joint test is not only applicable for simultaneous detection of the two epi-
+genetic eects, but it is also more powerful compared to the two-chi-squares test.
+Furthermore, we note that the formula for power calculation in terms of sequencing
+parameters (sequencing depth and read length) and sequencing divergence is appli-
+cable for other tests, not just for the joint test.
+We provide theoretical power under some combinations of parameters. If an in-
+formative read is dened as covering at least one SNP for mouse reciprocal cross
+design, sequencing depth E(T) = 40 is necessary to achieve sucient power under
+read length l = 100 and sequence divergence d = 1%, especially when imprinting and
+AEI eects (p1; p2) are moderate. Fixing E(T) = 30 and d = 1%, the power does
+not improve much when l > 100. It suggests that increasing sequence depth, not
+read length, is the key to improve power, although it can be expensive. On the other
+hand, if an informative read is dened as covering a particular SNP, then E(T) at
+least 130 and l at least 250 is necessary to achieve sucient power under d = 2%,
+even when imprinting and AEI eects are strong. Because increasing read length
+may have a higher error rate of base calling with currently available technology, we
+iii
+suggest increasing sequence depth as more reliable, albeit more expensive, alterna-
+tive. Note that the two denitions of \an informative read" may be interpreted as a
+genome-wide or a candidate gene based study, respectively.
+As for human data, we discuss which trio structures are informative, and we still
+use the joint test to detect imprinting and AEI. In the theoretical power calculation,
+except for the eects of sequencing parameters and sequence divergence, the number
+of families in a random sample of N trios is also considered. If an informative read
+is dened as covering at least one SNP, sequencing depth E(T) = 8 is necessary to
+achieve reasonable power under the setting of N = 50, l = 100 and d = 1%, especially
+when imprinting and AEI eects are moderate. Fixing E(T) = 4 and d = 1%, the
+power does not improve much when l > 100. As for the number of families N, under
+E(T) = 4, d = 1% and l = 100, even N = 20 leads to a sucient power for detecting
+strong imprinting and AEI eects (such as one of the p0
+is is 0.1). However, a larger
+size such as N = 100 is necessary for more moderate eects. If an informative read
+is dened as covering a particular SNP, E(T) of at least 10 and l of at least 250
+is necessary to achieve sucient power under N = 100 and d = 2%, even when
+imprinting and/or AEI eects are strong. As for the eect of N, under E(T) = 10,
+d = 2% and l = 250, N = 200 is necessary to achieve sucient power even for strong
+imprinting and AEI eects.
